@@ -91,6 +91,9 @@ public class MainController {
             deviceListView.getSelectionModel().select(vm);
         });
 
+        networkCanvas.setOnFirstDeviceSelected(() ->
+                setStatus("Primeiro dispositivo selecionado. Clique no segundo para conectar."));
+
         networkCanvas.setOnConnectionRequest(ids -> {
             showConnectDialog(ids[0], ids[1]);
             setConnectMode(false);
@@ -139,6 +142,10 @@ public class MainController {
 
     @FXML
     public void onConnectDevices() {
+        if (!connectModeActive && config.getTopology().getDeviceCount() < 2) {
+            showAlert("Adicione pelo menos 2 dispositivos antes de conectar.");
+            return;
+        }
         setConnectMode(!connectModeActive);
     }
 

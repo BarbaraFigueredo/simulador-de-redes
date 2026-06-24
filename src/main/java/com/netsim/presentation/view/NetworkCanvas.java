@@ -33,6 +33,7 @@ public class NetworkCanvas extends Pane {
 
     private Consumer<DeviceViewModel>            onDeviceSelected;
     private Consumer<String[]>                   onConnectionRequest;
+    private Runnable                             onFirstDeviceSelected;
 
     // Estado do drag
     private double dragStartX, dragStartY;
@@ -200,6 +201,8 @@ public class NetworkCanvas extends Pane {
             connectPreviewLine.setEndX(node.getCenterX());
             connectPreviewLine.setEndY(node.getCenterY());
             connectPreviewLine.setVisible(true);
+            if (onFirstDeviceSelected != null) onFirstDeviceSelected.run();
+            if (onDeviceSelected != null) onDeviceSelected.accept(node.getViewModel());
         } else if (connectModeSource != node) {
             if (onConnectionRequest != null) {
                 onConnectionRequest.accept(new String[]{
@@ -238,8 +241,9 @@ public class NetworkCanvas extends Pane {
 
     // --- Callbacks ---
 
-    public void setOnDeviceSelected(Consumer<DeviceViewModel> cb)  { this.onDeviceSelected = cb; }
-    public void setOnConnectionRequest(Consumer<String[]> cb)       { this.onConnectionRequest = cb; }
+    public void setOnDeviceSelected(Consumer<DeviceViewModel> cb)    { this.onDeviceSelected = cb; }
+    public void setOnConnectionRequest(Consumer<String[]> cb)        { this.onConnectionRequest = cb; }
+    public void setOnFirstDeviceSelected(Runnable cb)                { this.onFirstDeviceSelected = cb; }
     public Map<String, DeviceNodeView> getNodeViews()               { return Collections.unmodifiableMap(nodeViews); }
     public boolean isConnectMode()                                  { return connectMode; }
 }
