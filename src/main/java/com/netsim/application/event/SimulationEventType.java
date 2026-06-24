@@ -1,0 +1,15 @@
+package com.netsim.application.event;
+
+public enum SimulationEventType {
+    DEVICE_ADDED,
+    DEVICE_REMOVED,
+    CONNECTION_ADDED,
+    CONNECTION_REMOVED,
+    PACKET_SENT,
+    PACKET_HOP,
+    PACKET_DELIVERED,
+    PACKET_DROPPED,
+    TOPOLOGY_LOADED,
+    TOPOLOGY_CLEARED,
+    SIMULATION_LOG
+}

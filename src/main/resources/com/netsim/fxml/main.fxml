@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.netsim.presentation.controller.MainController"
+            fx:id="rootPane"
+            stylesheets="@../css/dark-theme.css">
+
+    <!-- ═══════════════════════  TOPO  ═══════════════════════ -->
+    <top>
+        <VBox>
+            <MenuBar styleClass="menu-bar">
+                <Menu text="Arquivo">
+                    <MenuItem text="Exportar Topologia (JSON)" onAction="#onExportTopology"/>
+                    <MenuItem text="Importar Topologia (JSON)" onAction="#onImportTopology"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Limpar Tudo"               onAction="#onClearTopology"/>
+                </Menu>
+                <Menu text="Simulação">
+                    <MenuItem text="Enviar Pacote"             onAction="#onSendPacket"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Resetar Estatísticas"      onAction="#onResetStats"/>
+                </Menu>
+            </MenuBar>
+
+            <ToolBar styleClass="tool-bar">
+                <Button text="+ Computador" onAction="#onAddComputer" styleClass="btn-add-computer"
+                        tooltip="Adicionar um computador"/>
+                <Button text="+ Switch"     onAction="#onAddSwitch"   styleClass="btn-add-switch"/>
+                <Button text="+ Roteador"   onAction="#onAddRouter"   styleClass="btn-add-router"/>
+                <Separator/>
+                <Button text="Conectar Dispositivos" onAction="#onConnectDevices"
+                        fx:id="btnConnect" styleClass="btn-connect"/>
+                <Separator/>
+                <Button text="Enviar Pacote"         onAction="#onSendPacket" styleClass="btn-send"/>
+                <Separator/>
+                <ToggleButton text="Modo Passo a Passo" fx:id="btnStepMode"/>
+                <Separator/>
+                <Button text="Remover" onAction="#onRemoveDevice" styleClass="btn-danger"/>
+            </ToolBar>
+        </VBox>
+    </top>
+
+    <!-- ═══════════════════════  ESQUERDA  ═══════════════════ -->
+    <left>
+        <VBox styleClass="panel-left" prefWidth="210">
+            <Label text="Dispositivos" styleClass="panel-title"/>
+            <ListView fx:id="deviceListView" VBox.vgrow="ALWAYS" styleClass="device-list"/>
+        </VBox>
+    </left>
+
+    <!-- ═══════════════════════  CENTRO  ═════════════════════ -->
+    <center>
+        <StackPane fx:id="canvasContainer" styleClass="canvas-container"/>
+    </center>
+
+    <!-- ═══════════════════════  DIREITA  ════════════════════ -->
+    <right>
+        <VBox styleClass="panel-right" prefWidth="240" spacing="6">
+            <Label text="Detalhes do Dispositivo" styleClass="panel-title"/>
+
+            <VBox styleClass="detail-card" spacing="4">
+                <Label text="Nome:" styleClass="detail-label"/>
+                <Label fx:id="lblDeviceName" text="-" styleClass="detail-value"/>
+                <Label text="IP:" styleClass="detail-label"/>
+                <Label fx:id="lblDeviceIp" text="-" styleClass="detail-value"/>
+                <Label text="Tipo:" styleClass="detail-label"/>
+                <Label fx:id="lblDeviceType" text="-" styleClass="detail-value"/>
+                <Label text="Status:" styleClass="detail-label"/>
+                <Label fx:id="lblDeviceStatus" text="-" styleClass="detail-value"/>
+                <Label text="Info:" styleClass="detail-label"/>
+                <Label fx:id="lblDeviceExtra" text="-" styleClass="detail-value" wrapText="true"/>
+            </VBox>
+
+            <Label text="Tabela de Rotas" styleClass="panel-title"/>
+            <ListView fx:id="routeListView" VBox.vgrow="ALWAYS" styleClass="route-list"/>
+        </VBox>
+    </right>
+
+    <!-- ═══════════════════════  BAIXO  ══════════════════════ -->
+    <bottom>
+        <VBox>
+            <HBox alignment="CENTER_LEFT" spacing="8" styleClass="log-header">
+                <Label text="Log da Simulação" styleClass="panel-title"/>
+                <Button text="Limpar" onAction="#onClearLogs" styleClass="btn-small"/>
+            </HBox>
+            <ListView fx:id="logListView" prefHeight="140" styleClass="log-list"/>
+            <HBox styleClass="stats-bar">
+                <Label fx:id="lblStats" text="Aguardando simulação..." styleClass="stats-label"/>
+            </HBox>
+            <HBox styleClass="status-bar-pane">
+                <Label fx:id="statusBar" text="Pronto" styleClass="status-bar"/>
+            </HBox>
+        </VBox>
+    </bottom>
+
+</BorderPane>

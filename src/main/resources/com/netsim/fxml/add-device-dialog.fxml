@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.netsim.presentation.controller.AddDeviceDialogController"
+      spacing="12" prefWidth="340"
+      styleClass="dialog-root"
+      stylesheets="@../css/dark-theme.css">
+
+    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+    <Label fx:id="lblTitle" text="Adicionar Dispositivo" styleClass="dialog-title"/>
+
+    <Label text="Nome do dispositivo:" styleClass="form-label"/>
+    <TextField fx:id="txtName" promptText="Ex: PC-01" styleClass="form-input"/>
+
+    <Label text="Endereço IP:" styleClass="form-label"/>
+    <TextField fx:id="txtIp" promptText="Ex: 192.168.1.10" styleClass="form-input"/>
+
+    <Label fx:id="lblExtra" text="Info adicional:" styleClass="form-label"/>
+    <TextField fx:id="txtExtra" promptText="Ex: Linux" styleClass="form-input"/>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button fx:id="btnCancel" text="Cancelar" styleClass="btn-secondary"/>
+        <Button fx:id="btnOk"     text="Adicionar" styleClass="btn-primary"/>
+    </HBox>
+
+</VBox>
