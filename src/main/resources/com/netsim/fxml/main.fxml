@@ -27,8 +27,9 @@
             </MenuBar>
 
             <ToolBar styleClass="tool-bar">
-                <Button text="+ Computador" onAction="#onAddComputer" styleClass="btn-add-computer"
-                        tooltip="Adicionar um computador"/>
+                <Button text="+ Computador" onAction="#onAddComputer" styleClass="btn-add-computer">
+                    <tooltip><Tooltip text="Adicionar um computador"/></tooltip>
+                </Button>
                 <Button text="+ Switch"     onAction="#onAddSwitch"   styleClass="btn-add-switch"/>
                 <Button text="+ Roteador"   onAction="#onAddRouter"   styleClass="btn-add-router"/>
                 <Separator/>
